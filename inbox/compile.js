@@ -35,6 +35,10 @@ const bytecode = contrato.contracts.Inbox.Inbox.evm.bytecode.object
 const abi = contrato.contracts.Inbox.Inbox.abi
 
 module.exports = contrato.contracts.Inbox.Inbox
-console.log(contrato.contracts.Inbox.Inbox.abi);
+//module.exports = bytecode
+//module.exports = abi
+//module.exports = rawcontract
+
+//console.log(contrato.contracts.Inbox.Inbox.abi);
 
 // console.log(rawcontract)
