@@ -21,6 +21,10 @@ async function deploy() {
     // const abi = compiled.contracts["ContractName.sol"]["ContractName"].abi;
     const bytecode = evm.bytecode.object;
 
+    console.log("le abi", abi)
+    console.log("bytecode", bytecode)
+    console.log("conta 1", this.accounts[0])
+
     // Deploy the contract and send it gas to run.
     this.contract = await new web3.eth.Contract(abi)
         .deploy({data:'0x'+ bytecode, arguments: ['ola']})
