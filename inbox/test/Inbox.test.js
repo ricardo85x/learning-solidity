@@ -7,6 +7,12 @@ const { abi, evm } = require('../compile');
 let accounts;
 let inbox; 
 
+
+// soh funciona com o web 1 beta 48
+//  npm install web3@1.0.0-beta.48
+
+
+
 beforeEach( async () => {
 
     // console.log("D1", evm.bytecode.object)

@@ -28,7 +28,7 @@ async function deploy() {
     // Deploy the contract and send it gas to run.
     this.contract = await new web3.eth.Contract(abi)
         .deploy({data:'0x'+ bytecode, arguments: ['ola']})
-        .send({from: this.accounts[0], gas:'5000000'});
+        .send({from: this.accounts[0], gas:1000000, gasLimit: 99999999});
 
     return this;
 }
