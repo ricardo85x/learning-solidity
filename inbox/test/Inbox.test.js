@@ -25,39 +25,16 @@ beforeEach( async () => {
     inbox = await new web3.eth.Contract(abi)
         .deploy({ data: '0x' + evm.bytecode.object, arguments: ['ola mundo']})
         .send({ from: accounts[0],   
-            gas: 1500000,
-            gasPrice: '30000000000000'
+            gas: 1500000       
         })
-        .on('error', (error) => { 
-            console.log("Erro", error)
-         })
-        .on('transactionHash', (transactionHash) => { 
-            console.log("Transacao", transactionHash)
-         })
-        .on('receipt', (receipt) => {
-           console.log("receipt", receipt.contractAddress) // contains the new contract address
-        })
-        .on('confirmation', (confirmationNumber, receipt) => { 
-            console.log("confirmacao", confirmationNumber)
-        })
-        // .end((newContractInstance) => {
-        //     console.log("newContractInstance", newContractInstance.options.address) // instance with the new contract address
-        // })
 
-    console.log(inbox)
 
 });
 
-console.log("ma oia", inbox)
-
 describe('Le Inbox', () => {
     it('deploy a contract', () => {
+        assert.ok(inbox.options.address)
+    });
 
-        console.log("D3")
 
-            //console.log(accounts)
-      //      console.log("abi", abi);
-       //     console.log("bytecode", evm.bytecode.object)
-      //      console.log('contrato: ', inbox)
-    })
 })
