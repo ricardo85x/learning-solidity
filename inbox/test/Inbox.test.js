@@ -12,7 +12,7 @@ let inbox;
 //  npm install web3@1.0.0-beta.48
 
 
-
+const msg_inicial = "Ola mundo"
 beforeEach( async () => {
 
     // console.log("D1", evm.bytecode.object)
@@ -23,7 +23,7 @@ beforeEach( async () => {
     // use one of these accounts to deloy the ccontract
 
     inbox = await new web3.eth.Contract(abi)
-        .deploy({ data: '0x' + evm.bytecode.object, arguments: ['ola mundo']})
+        .deploy({ data: '0x' + evm.bytecode.object, arguments: [msg_inicial]})
         .send({ from: accounts[0],   
             gas: 1500000       
         })
@@ -34,6 +34,12 @@ beforeEach( async () => {
 describe('Le Inbox', () => {
     it('deploy a contract', () => {
         assert.ok(inbox.options.address)
+    });
+
+    it('has a default message', async () => {
+         const message = await inbox.methods.message().call()
+        assert.equal(message, msg_inicial)
+         console.log(message)
     });
 
 
