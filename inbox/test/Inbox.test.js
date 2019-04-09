@@ -42,5 +42,20 @@ describe('Le Inbox', () => {
          console.log(message)
     });
 
+    it('can change the message', async () => {
+        
+        const nova_msg = "vai kgar"
+        await inbox.methods.setMessage(nova_msg).send({
+            from: accounts[0],
+            gas: 1000000,
+            gasPrice: 20000
+        })
+
+        const message = await inbox.methods.message().call();
+
+        assert.equal(message, nova_msg)
+
+    })
+
 
 })
