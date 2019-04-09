@@ -1,0 +1,6 @@
+npm install npm install solc ganache-cli  mocha jest
+npm install web3@1.0.0-beta.48
+
+
+npm remove web3
+npm install --save truffle-hdwallet-provider
