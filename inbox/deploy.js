@@ -9,11 +9,16 @@ const { abi, evm } = require("./compile");
 
 const provider = new HDWalletProvider(
     'flame slam actor barely choice dash moon whale sign diesel solve barely',
- //   'http://localhost:8545'
-   'https://rinkeby.infura.io/v3/d60ab8d387f54bd2991addf1b0d2d18f'
-    );
+    //'http://localhost:8546',
+    'https://rinkeby.infura.io/v3/d60ab8d387f54bd2991addf1b0d2d18f'
+);
 
-const web3 = new Web3(provider);
+const OPTIONS = {
+    defaultBlock: "latest",
+    transactionConfirmationBlocks: 1,
+    transactionBlockTimeout: 5
+};
+const web3 = new Web3(provider, null, OPTIONS);
 
 let  inbox;
 
@@ -29,8 +34,9 @@ const deploy = async () => {
         .deploy({ data: '0x' + evm.bytecode.object, arguments: [msg_inicial]})
         .send({ from: accounts[0],   
             // gas: '10000000',
+            // gasPrice: web3.utils.toHex(20000000000),
             gasPrice: web3.utils.toHex(20000000000),
-            gasLimit: web3.utils.toHex(800000)
+            gas: web3.utils.toHex(1000000)
         })
         .on('error', (error) => { 
             console.log("Erro", error)
@@ -47,6 +53,13 @@ const deploy = async () => {
 
     console.log("enviando o contrato!: ", inbox.options.address)
 
+    return inbox;
+
 };
 
-deploy();
+deploy()
+    .then(contrato => {
+            provider.engine.stop()
+            console.log("ehh TREEEETAAAAA!")
+            console.log(contrato.options.address)
+    });
