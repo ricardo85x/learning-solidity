@@ -30,6 +30,10 @@ contract Loteria {
         jogadores = new address payable[](0);
         
     }
+
+    function abc() public view {
+        
+    }
     
     
     
