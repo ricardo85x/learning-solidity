@@ -23,8 +23,8 @@ contract Loteria {
     }
     
     
-    function escoolherGanhador() public apenasGerente  {
-
+    function escolherGanhador() public apenasGerente  {
+        // require(jogadores.length > 0);
         uint index = random() % jogadores.length;
         jogadores[index].transfer(address(this).balance);
         jogadores = new address payable[](0);
