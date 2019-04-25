@@ -11,6 +11,10 @@ contract Inbox {
     function setMessage(string memory newMessage) public {
         message = newMessage;
     }
+
+    function doMath(int a, int b) public {
+
+    }
     
     // function doMath(int  a, int  b) public {
     //     a+b;
