@@ -35,7 +35,7 @@ const loadWeb3 =  async loadWeb3 => {
 
 
     }
-    // Non-dapp browsers...
+    // Non-dapp browsers... blablabla
     else {
         console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
