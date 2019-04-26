@@ -4,9 +4,16 @@ import Web3 from 'web3';
 
 let web3;
 
+const OPTIONS = {
+    defaultBlock: "latest",
+    transactionConfirmationBlocks: 1,
+    transactionBlockTimeout: 5
+};
+
+
 const loadWeb3 =  async loadWeb3 => {
     if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
+        web3 = new Web3(window.ethereum, null, OPTIONS);
         try {
             await window.ethereum.enable();
             //var accounts=
@@ -19,7 +26,7 @@ const loadWeb3 =  async loadWeb3 => {
     // Legacy dapp browsers... blalbla
     else if (window.web3) {
         console.log("morre diabo 2")
-        web3 = new Web3(window.web3.currentProvider);
+        web3 = new Web3(window.web3.currentProvider, null, OPTIONS);
 
         try {
             await window.web3.currentProvider.enable();
