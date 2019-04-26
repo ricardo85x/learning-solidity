@@ -9,13 +9,14 @@ const loadWeb3 =  async loadWeb3 => {
         web3 = new Web3(window.ethereum);
         try {
             await window.ethereum.enable();
-            var accounts= await web3.eth.getAccounts();
+            //var accounts=
+            await web3.eth.getAccounts();
 
         } catch (error) {
             console.log('usuairo nao esta coperando', error)
         }
     }
-    // Legacy dapp browsers...
+    // Legacy dapp browsers... blalbla
     else if (window.web3) {
         console.log("morre diabo 2")
         web3 = new Web3(window.web3.currentProvider);
@@ -23,9 +24,10 @@ const loadWeb3 =  async loadWeb3 => {
         try {
             await window.web3.currentProvider.enable();
 
-            var accounts= await web3.eth.getAccounts();
+            //var accounts=
+            await web3.eth.getAccounts();
 
-            console.log("conta 0", accounts)
+         //   console.log("conta 0", accounts)
 
 
         } catch( error) {

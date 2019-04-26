@@ -1,6 +1,13 @@
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-const { abi, evm } = require("./compile");
+//const { abi, evm } = require("./compile");
+
+const  loteria_solodity = require('./compile');
+
+
+const abi = loteria_solodity.Loteria.abi;
+
+const evm = loteria_solodity.Loteria.evm;
 
 
 // geth --rinkeby  --rpc 
@@ -48,6 +55,8 @@ const deploy = async () => {
             console.log("confirmacao", confirmationNumber)
         })
 
+
+    console.log("ABI", abi)
     console.log("enviando o contrato!: ", loteria.options.address)
 
     return loteria;
