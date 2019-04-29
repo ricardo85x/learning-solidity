@@ -47,6 +47,18 @@ class App extends Component {
 
     };
 
+    onClick = async () => {
+        const contas = await web3.eth.getAccounts();
+
+        this.setState({ mensagem: 'escolhendo aleatoriamente um ganhador sortudo, espere por favor!' })
+        await loteria.methods.escolherGanhador().send({
+            from: contas[0]
+        })
+
+        this.setState({ mensagem: 'um ganhador foi escolhido! '})
+
+    }
+
 
     render(){
 
@@ -77,6 +89,12 @@ class App extends Component {
                 </form>
 
                 <hr />
+
+                <h4>Pronto para escolher o ganhador</h4>
+                <button onClick={this.onClick}>Ecolha o ganhador!</button>
+                <hr />
+
+
                 <h1>{this.state.mensagem} </h1>
             </div>
         );
