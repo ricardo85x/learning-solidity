@@ -18,6 +18,7 @@ contract Campanha {
     uint public contribuicaoMinima;
     
     mapping(address => bool) public aprovadores; // apoiadores
+    uint aprovadoresCount;
     
     
     modifier restrito() {
@@ -35,6 +36,7 @@ contract Campanha {
         require(msg.value > contribuicaoMinima);
         
         aprovadores[msg.sender] = true;
+        aprovadoresCount++;
     }
     
     function criarRequisicao(string memory descricao , uint  valor , address  destinatario ) public restrito {
@@ -61,6 +63,21 @@ contract Campanha {
         
         pedido.aprovacoes[msg.sender] = true;
         pedido.qtdAprovacoes++;
+    }
+    
+    function finalizarPedido(uint indice) public restrito {
+    
+        Requisicao storage pedido = requisicoes[indice];
+        require(pedido.finalizado == false);
+        require(pedido.qtdAprovacoes >= (aprovadoresCount / 2));
+        
+        pedido.destinatario.transfer(pedido.value);
+        
+        aprovadoresCount = 0;
+        
+        pedido.finalizado = true;
+        
+        
     }
     
     
